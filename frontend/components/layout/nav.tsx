@@ -34,8 +34,8 @@ export function Nav() {
         </div>
       </header>
 
-      <aside className="fixed inset-y-0 left-0 z-40 hidden w-72 border-r border-white/10 bg-[#060a10]/82 p-4 backdrop-blur-2xl lg:block">
-        <Link href="/dashboard" className="mb-8 flex rounded-lg px-2 py-2">
+      <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 border-r border-white/10 bg-[#060a10]/86 p-4 backdrop-blur-2xl lg:block">
+        <Link href="/dashboard" className="mb-7 flex rounded-lg px-1 py-1">
           <BrandLogo />
         </Link>
         <nav className="space-y-1.5">
@@ -56,9 +56,9 @@ export function Nav() {
             );
           })}
         </nav>
-        <div className="absolute bottom-4 left-4 right-4 rounded-lg border border-white/10 bg-white/[0.055] p-4">
+        <div className="absolute bottom-4 left-4 right-4 rounded-lg border border-white/10 bg-white/[0.055] p-3">
           <p className="text-xs font-medium text-foreground">Live academic lens</p>
-          <p className="mt-1 text-xs leading-5 text-muted">OpenAlex, CORE, Crossref, Qdrant, OpenSearch, and OpenRouter-ready.</p>
+          <p className="mt-1 text-xs leading-5 text-muted">OpenAlex, CORE, Crossref, Qdrant, and OpenSearch-ready.</p>
         </div>
       </aside>
 

@@ -17,7 +17,7 @@ const edges = [
 
 export function ResearchGraph() {
   return (
-    <div className="h-[520px] overflow-hidden rounded-lg border border-border bg-white text-black">
+    <div className="h-[420px] min-w-0 overflow-hidden rounded-lg border border-border bg-white text-black">
       <ReactFlow nodes={nodes} edges={edges} fitView>
         <Background />
         <Controls />

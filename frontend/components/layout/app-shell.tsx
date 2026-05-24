@@ -6,7 +6,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <div className="app-noise pointer-events-none fixed inset-0 opacity-70" />
       <div className="premium-grid pointer-events-none fixed inset-0 opacity-45" />
       <Nav />
-      <section className="relative mx-auto w-full px-4 pb-28 pt-24 sm:px-6 lg:ml-72 lg:min-h-screen lg:px-8 lg:py-7 xl:px-10">
+      <section className="relative w-full px-4 pb-24 pt-20 sm:px-5 lg:min-h-screen lg:pl-64 lg:pr-6 lg:pt-6 xl:pr-8">
         {children}
       </section>
     </main>

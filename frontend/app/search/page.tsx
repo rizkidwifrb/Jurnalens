@@ -44,16 +44,16 @@ function SearchContent() {
 
   return (
     <AppShell>
-      <div className="mx-auto max-w-7xl space-y-5 sm:space-y-6">
+      <div className="mx-auto max-w-6xl space-y-5">
         <header className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div className="min-w-0">
             <p className="mb-2 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-xs text-muted"><Sparkles className="h-3.5 w-3.5 text-accent" /> Hybrid academic retrieval</p>
-            <h1 className="text-balance text-3xl font-semibold leading-tight sm:text-4xl">Search with Jurnalens</h1>
+            <h1 className="text-balance text-3xl font-semibold leading-tight">Search with Jurnalens</h1>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">Cari jurnal, metode, topik, atau pertanyaan riset. Hasil bisa datang dari index lokal dan fallback live academic sources.</p>
           </div>
         </header>
 
-        <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_390px] lg:gap-6">
+        <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_340px]">
           <section className="space-y-5">
             <SearchBox onSearch={run} initialQuery={activeQuery} />
             <div className="flex flex-wrap gap-2 text-xs text-muted">
