@@ -1,4 +1,5 @@
 from uuid import UUID
+import logging
 from sqlalchemy.orm import Session
 from app.models import Paper, SearchHistory, User
 from app.schemas import SearchFilters, SearchResult
@@ -6,6 +7,8 @@ from app.services.embedding_service import EmbeddingService
 from app.services.groq_service import GroqService
 from app.services.opensearch_service import OpenSearchService
 from app.services.qdrant_service import QdrantService
+
+logger = logging.getLogger(__name__)
 
 
 class HybridSearchService:
@@ -34,9 +37,20 @@ class HybridSearchService:
         if user:
             db.add(SearchHistory(user_id=user.id, query=query, filters_json=filters.model_dump()))
             db.commit()
-        bm25_hits = self.opensearch.search(query, limit=limit * 2)
-        vector = self.embeddings.embed_one(query)
-        vector_hits = self.qdrant.search(vector, limit=limit * 2)
+
+        try:
+            bm25_hits = self.opensearch.search(query, limit=limit * 2)
+        except Exception as exc:
+            logger.warning("OpenSearch search failed; falling back without BM25: %s", exc)
+            bm25_hits = []
+
+        try:
+            vector = self.embeddings.embed_one(query)
+            vector_hits = self.qdrant.search(vector, limit=limit * 2)
+        except Exception as exc:
+            logger.warning("Vector search failed; falling back without Qdrant: %s", exc)
+            vector_hits = []
+
         scores: dict[str, float] = {}
         reasons: dict[str, list[str]] = {}
         for rank, hit in enumerate(bm25_hits):
@@ -60,7 +74,12 @@ class HybridSearchService:
         context = [r.paper.model_dump() if hasattr(r.paper, "model_dump") else {
             "title": r.paper.title, "abstract": r.paper.abstract, "year": r.paper.year
         } for r in results[:5]]
-        answer = self.llm.complete(f"Answer this academic search query and cite the most relevant papers: {query}", context)
+        try:
+            answer = self.llm.complete(f"Answer this academic search query and cite the most relevant papers: {query}", context)
+        except Exception as exc:
+            logger.warning("LLM completion failed: %s", exc)
+            answer = "AI synthesis is temporarily unavailable, but search results are still shown when available. Confidence: Not available."
+
         citations = [{"index": i + 1, "paper_id": str(r.paper.id), "title": r.paper.title, "doi": r.paper.doi or "Not available"} for i, r in enumerate(results[:5])]
         next_questions = [
             f"What methods are most common in {query}?",
