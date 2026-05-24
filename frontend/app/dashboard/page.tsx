@@ -11,14 +11,14 @@ export default function DashboardPage() {
       <div className="mx-auto max-w-7xl space-y-6">
         <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
           <section className="space-y-5">
-            <p className="text-sm text-muted">Good morning. Your research workspace is ready.</p>
-            <h1 className="max-w-3xl text-5xl font-semibold leading-tight">Find the signal inside academic noise.</h1>
+            <p className="text-sm text-muted">Jurnalens workspace is ready.</p>
+            <h1 className="text-balance max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl">Find the signal inside academic noise.</h1>
             <SearchBox large onSearch={(query) => { window.location.href = `/search?q=${encodeURIComponent(query)}`; }} />
           </section>
           <Card className="flex flex-col justify-between">
             <div>
               <p className="text-sm text-muted">Recommendation logic</p>
-              <h2 className="mt-2 text-2xl font-semibold">Personal feed</h2>
+              <h2 className="mt-2 text-2xl font-semibold">Research feed</h2>
             </div>
             <p className="mt-8 text-sm leading-6 text-muted">Combines search history, bookmarks, followed topics, author signals, recency, and citation impact.</p>
           </Card>

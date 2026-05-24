@@ -1,1 +1,1 @@
-"""AI Academic Research Engine backend package."""
+"""Jurnalens backend package."""

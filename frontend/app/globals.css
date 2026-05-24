@@ -3,25 +3,26 @@
 @tailwind utilities;
 
 * { box-sizing: border-box; }
-html { background: #07090d; color: #edf2f8; }
+html { background: #05070a; color: #edf2f8; }
 body {
   min-height: 100vh;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 18rem),
-    radial-gradient(circle at 14% 8%, rgba(139, 211, 255, 0.14), transparent 34rem),
-    radial-gradient(circle at 84% 10%, rgba(185, 242, 124, 0.08), transparent 26rem),
-    #07090d;
+    linear-gradient(120deg, rgba(121, 226, 255, 0.11), transparent 34%),
+    linear-gradient(245deg, rgba(189, 242, 124, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 16rem),
+    #05070a;
   font-feature-settings: "ss01", "ss02", "cv01", "cv03";
   text-rendering: optimizeLegibility;
 }
 a { color: inherit; text-decoration: none; }
+::selection { background: rgba(139, 211, 255, 0.24); color: #ffffff; }
 .glass {
-  border: 1px solid rgba(190, 205, 225, 0.14);
+  border: 1px solid rgba(190, 205, 225, 0.15);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.035)),
-    rgba(13, 18, 26, 0.68);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.036)),
+    rgba(11, 16, 24, 0.74);
   backdrop-filter: blur(22px) saturate(130%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 24px 90px rgba(0, 0, 0, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 24px 90px rgba(0, 0, 0, 0.3);
 }
 .hairline { border-color: rgba(190, 205, 225, 0.13); }
 .focus-ring { outline: none; box-shadow: 0 0 0 4px rgba(139, 211, 255, 0.16); }
@@ -29,6 +30,16 @@ a { color: inherit; text-decoration: none; }
   background-image:
     linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-  background-size: 48px 48px;
+  background-size: 44px 44px;
   mask-image: linear-gradient(to bottom, black, transparent 80%);
+}
+.app-noise {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.text-balance { text-wrap: balance; }
+@media (max-width: 640px) {
+  body { background-attachment: fixed; }
 }

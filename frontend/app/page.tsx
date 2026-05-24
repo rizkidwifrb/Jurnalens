@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Database, Network, ShieldCheck, Sparkles, type LucideIcon } from "lucide-react";
 import { AnswerPanel } from "@/components/ai/answer-panel";
+import { BrandLogo } from "@/components/brand/brand-logo";
 import { ResearchGraph } from "@/components/graph/research-graph";
 import { SearchBox } from "@/components/search/search-box";
 import { Card } from "@/components/ui/card";
@@ -12,17 +13,17 @@ export default function LandingPage() {
   const features: Array<[string, string, LucideIcon]> = [
     ["Hybrid search", "BM25, vector retrieval, reranking, and citation-aware results in one loop.", Database],
     ["Grounded AI", "Summaries, research gaps, methodology, novelty, and roadmap with citations.", Sparkles],
-    ["Research graph", "Papers, authors, topics, and journals mapped into an interactive graph.", Network],
+    ["Knowledge graph", "Papers, authors, topics, and journals mapped into an interactive graph.", Network],
     ["Local-first", "Free local infrastructure with optional OpenRouter, Semantic Scholar, and CORE keys.", ShieldCheck]
   ];
 
   return (
     <main className="relative min-h-screen overflow-hidden px-4 py-6 sm:px-8">
-      <div className="premium-grid pointer-events-none absolute inset-0 opacity-60" />
+      <div className="app-noise pointer-events-none absolute inset-0 opacity-70" />
+      <div className="premium-grid pointer-events-none absolute inset-0 opacity-45" />
       <nav className="relative mx-auto flex max-w-7xl items-center justify-between rounded-lg border border-white/10 bg-white/[0.035] px-3 py-3 backdrop-blur-xl">
         <Link href="/" className="flex items-center gap-3 text-sm font-semibold">
-          <span className="grid h-9 w-9 place-items-center rounded-md bg-white text-black">AI</span>
-          <span>Academic Research Engine</span>
+          <BrandLogo />
         </Link>
         <div className="flex gap-2">
           <Link href="/login" className="rounded-md px-3 py-2 text-sm text-muted transition hover:text-foreground">Login</Link>
@@ -36,13 +37,13 @@ export default function LandingPage() {
         <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: "easeOut" }} className="space-y-8">
           <div className="space-y-5">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.055] px-3 py-1.5 text-xs text-muted">
-              <Sparkles className="h-3.5 w-3.5 text-accent" /> Research intelligence, locally runnable
+              <Sparkles className="h-3.5 w-3.5 text-accent" /> Academic intelligence through a sharper lens
             </div>
-            <h1 className="max-w-5xl text-5xl font-semibold leading-[1.02] tracking-normal text-foreground sm:text-7xl">
-              Search less. Understand research faster.
+            <h1 className="text-balance max-w-5xl text-5xl font-semibold leading-[1.02] tracking-normal text-foreground sm:text-7xl">
+              Jurnalens turns papers into clarity.
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-[#aebbc9]">
-              A premium academic AI workspace for semantic search, grounded answers, PDF chat, citation exports, recommendations, and research graphs.
+              A premium academic AI workspace for semantic search, grounded answers, PDF chat, citation exports, recommendations, and research maps.
             </p>
           </div>
           <SearchBox large onSearch={(query) => { window.location.href = `/search?q=${encodeURIComponent(query)}`; }} />

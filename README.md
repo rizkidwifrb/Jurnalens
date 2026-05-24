@@ -1,4 +1,4 @@
-# AI Academic Research Engine
+# Jurnalens
 
 A local-first academic research platform inspired by Perplexity, Semantic Scholar, and Google Scholar-style workflows, without scraping Google Scholar.
 
@@ -88,7 +88,7 @@ Environment variables for the Vercel frontend:
 
 ```bash
 NEXT_PUBLIC_API_URL=https://your-backend-domain.example.com/api
-NEXT_PUBLIC_APP_NAME=AI Academic Research Engine
+NEXT_PUBLIC_APP_NAME=Jurnalens
 ```
 
 The FastAPI backend needs production services for PostgreSQL, Redis, OpenSearch, and Qdrant. Deploy it to a backend-capable host, then add the backend domain to `NEXT_PUBLIC_API_URL` and `CORS_ORIGINS`.

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Brain } from "lucide-react";
+import { BrandLogo } from "@/components/brand/brand-logo";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -18,12 +18,11 @@ export default function LoginPage() {
       <div className="premium-grid pointer-events-none absolute inset-0 opacity-60" />
       <Card className="relative w-full max-w-md space-y-6 p-7">
         <Link href="/" className="inline-flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-md bg-white text-black"><Brain className="h-5 w-5" /></span>
-          <span className="font-semibold">Research Engine</span>
+          <BrandLogo />
         </Link>
         <div>
           <h1 className="text-3xl font-semibold">Welcome back</h1>
-          <p className="mt-2 text-sm text-muted">Continue your academic workspace.</p>
+          <p className="mt-2 text-sm text-muted">Continue your Jurnalens workspace.</p>
         </div>
         <div className="space-y-3">
           <Input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />

@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    app_name: str = "AI Academic Research Engine"
+    app_name: str = "Jurnalens"
     api_prefix: str = "/api"
     database_url: str = "postgresql+psycopg://research:research@postgres:5432/research"
     redis_url: str = "redis://redis:6379/0"
