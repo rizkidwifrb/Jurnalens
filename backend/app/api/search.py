@@ -1,4 +1,5 @@
 from uuid import UUID
+import logging
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from app.api.deps import get_optional_user
@@ -8,6 +9,7 @@ from app.schemas import PaperRead, SearchFilters, SearchRequest, SearchResponse
 from app.services.graph_service import GraphService
 from app.services.hybrid_search_service import HybridSearchService
 
+logger = logging.getLogger(__name__)
 router = APIRouter(tags=["search"])
 
 
@@ -19,7 +21,24 @@ def basic_search(q: str = Query(""), db: Session = Depends(get_db)):
 @router.post("/search/semantic", response_model=SearchResponse)
 @router.post("/search/hybrid", response_model=SearchResponse)
 def hybrid(payload: SearchRequest, db: Session = Depends(get_db), user=Depends(get_optional_user)):
-    results, answer, citations, next_questions = HybridSearchService().search(db, payload.query, payload.filters, payload.limit, user)
+    try:
+        results, answer, citations, next_questions = HybridSearchService().search(db, payload.query, payload.filters, payload.limit, user)
+    except Exception as exc:
+        logger.exception("Hybrid search failed")
+        return SearchResponse(
+            query=payload.query,
+            results=[],
+            answer=(
+                "Search backend is temporarily unavailable. Check Railway DATABASE_URL, "
+                "OpenSearch, Qdrant, and migrations, then retry. Confidence: Not available."
+            ),
+            citations=[],
+            next_questions=[
+                f"What are the key papers about {payload.query}?",
+                f"What methods are commonly used for {payload.query}?",
+                f"What research gaps remain for {payload.query}?",
+            ],
+        )
     return SearchResponse(query=payload.query, results=results, answer=answer, citations=citations, next_questions=next_questions)
 
 
