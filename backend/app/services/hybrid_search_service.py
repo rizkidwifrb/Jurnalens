@@ -5,6 +5,7 @@ from app.models import Paper, SearchHistory, User
 from app.schemas import SearchFilters, SearchResult
 from app.services.embedding_service import EmbeddingService
 from app.services.groq_service import GroqService
+from app.services.live_search_service import live_external_search
 from app.services.opensearch_service import OpenSearchService
 from app.services.qdrant_service import QdrantService
 
@@ -71,6 +72,9 @@ class HybridSearchService:
             SearchResult(paper=by_id[pid], relevance_score=round(scores[pid], 4), ai_summary=(by_id[pid].abstract or "Not available")[:260], match_reasons=reasons.get(pid, []))
             for pid in ordered_ids if pid in by_id
         ][:limit]
+        if not results:
+            results = live_external_search(query, limit)
+
         context = [r.paper.model_dump() if hasattr(r.paper, "model_dump") else {
             "title": r.paper.title, "abstract": r.paper.abstract, "year": r.paper.year
         } for r in results[:5]]

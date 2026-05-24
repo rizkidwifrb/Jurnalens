@@ -8,6 +8,7 @@ from app.models import Paper
 from app.schemas import PaperRead, SearchFilters, SearchRequest, SearchResponse
 from app.services.graph_service import GraphService
 from app.services.hybrid_search_service import HybridSearchService
+from app.services.live_search_service import live_external_search
 
 logger = logging.getLogger(__name__)
 router = APIRouter(tags=["search"])
@@ -25,14 +26,15 @@ def hybrid(payload: SearchRequest, db: Session = Depends(get_db), user=Depends(g
         results, answer, citations, next_questions = HybridSearchService().search(db, payload.query, payload.filters, payload.limit, user)
     except Exception as exc:
         logger.exception("Hybrid search failed")
+        results = live_external_search(payload.query, payload.limit)
         return SearchResponse(
             query=payload.query,
-            results=[],
+            results=results,
             answer=(
-                "Search backend is temporarily unavailable. Check Railway DATABASE_URL, "
-                "OpenSearch, Qdrant, and migrations, then retry. Confidence: Not available."
+                "Local search index is temporarily unavailable, so these results were fetched live from academic sources. "
+                "Check Railway DATABASE_URL, OpenSearch, Qdrant, and migrations for full hybrid retrieval. Confidence: Medium."
             ),
-            citations=[],
+            citations=[{"index": i + 1, "paper_id": str(result.paper.id), "title": result.paper.title, "doi": result.paper.doi or "Not available"} for i, result in enumerate(results[:5])],
             next_questions=[
                 f"What are the key papers about {payload.query}?",
                 f"What methods are commonly used for {payload.query}?",
