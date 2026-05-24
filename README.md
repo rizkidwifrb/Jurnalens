@@ -89,6 +89,10 @@ Environment variables for the Vercel frontend:
 ```bash
 NEXT_PUBLIC_API_URL=https://your-backend-domain.example.com/api
 NEXT_PUBLIC_APP_NAME=Jurnalens
+NEXT_PUBLIC_FIREBASE_API_KEY=your-firebase-web-api-key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
+NEXT_PUBLIC_FIREBASE_APP_ID=your-firebase-app-id
 ```
 
 The FastAPI backend needs production services for PostgreSQL, Redis, OpenSearch, and Qdrant. Deploy it to a backend-capable host, then add the backend domain to `NEXT_PUBLIC_API_URL` and `CORS_ORIGINS`.

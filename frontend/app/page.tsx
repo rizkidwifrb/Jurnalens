@@ -11,10 +11,10 @@ import { Card } from "@/components/ui/card";
 
 export default function LandingPage() {
   const features: Array<[string, string, LucideIcon]> = [
-    ["Hybrid search", "BM25, vector retrieval, reranking, and citation-aware results in one loop.", Database],
-    ["Grounded AI", "Summaries, research gaps, methodology, novelty, and roadmap with citations.", Sparkles],
-    ["Knowledge graph", "Papers, authors, topics, and journals mapped into an interactive graph.", Network],
-    ["Local-first", "Free local infrastructure with optional OpenRouter, Semantic Scholar, and CORE keys.", ShieldCheck]
+    ["Pencarian hybrid", "BM25, retrieval vektor, reranking, dan hasil sadar sitasi dalam satu alur.", Database],
+    ["AI berbasis sumber", "Ringkasan, research gap, metodologi, novelty, dan roadmap dengan sitasi.", Sparkles],
+    ["Knowledge graph", "Paper, penulis, topik, dan jurnal dipetakan ke graph interaktif.", Network],
+    ["Siap production", "Infrastruktur lokal dan live source dengan OpenRouter, Semantic Scholar, dan CORE.", ShieldCheck]
   ];
 
   return (
@@ -26,9 +26,9 @@ export default function LandingPage() {
           <BrandLogo />
         </Link>
         <div className="flex gap-2">
-          <Link href="/login" className="rounded-md px-3 py-2 text-sm text-muted transition hover:text-foreground">Login</Link>
+          <Link href="/login" className="rounded-md px-3 py-2 text-sm text-muted transition hover:text-foreground">Masuk</Link>
           <Link href="/dashboard" className="inline-flex items-center gap-2 rounded-md bg-white px-3 py-2 text-sm font-medium text-black transition hover:-translate-y-0.5">
-            Open app <ArrowUpRight className="h-4 w-4" />
+            Buka app <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
       </nav>
@@ -37,13 +37,13 @@ export default function LandingPage() {
         <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: "easeOut" }} className="space-y-8">
           <div className="space-y-5">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.055] px-3 py-1.5 text-xs text-muted">
-              <Sparkles className="h-3.5 w-3.5 text-accent" /> Academic intelligence through a sharper lens
+              <Sparkles className="h-3.5 w-3.5 text-accent" /> Intelijen akademik lewat lensa yang lebih tajam
             </div>
             <h1 className="text-balance max-w-5xl text-5xl font-semibold leading-[1.02] tracking-normal text-foreground sm:text-7xl">
-              Jurnalens turns papers into clarity.
+              Jurnalens mengubah paper menjadi insight.
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-[#aebbc9]">
-              A premium academic AI workspace for semantic search, grounded answers, PDF chat, citation exports, recommendations, and research maps.
+              Workspace AI akademik untuk pencarian semantik, jawaban berbasis sumber, PDF chat, export sitasi, rekomendasi, dan peta riset.
             </p>
           </div>
           <SearchBox large onSearch={(query) => { window.location.href = `/search?q=${encodeURIComponent(query)}`; }} />
@@ -55,8 +55,8 @@ export default function LandingPage() {
         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.12, ease: "easeOut" }} className="space-y-4">
           <div className="rounded-lg border border-white/10 bg-white/[0.035] p-2 shadow-[0_30px_120px_rgba(0,0,0,0.38)]">
             <AnswerPanel
-              answer="The retrieved papers suggest student depression detection is moving from survey-only screening toward NLP, affective computing, and multimodal prediction. Strong future work should compare text-only baselines with transparent, privacy-aware multimodal models. Confidence: Medium."
-              citations={[{ index: 1, title: "Student mental health prediction", doi: "Not available" }]}
+              answer="Paper yang ditemukan menunjukkan deteksi depresi mahasiswa bergerak dari survei manual menuju NLP, affective computing, dan prediksi multimodal. Riset lanjutan perlu membandingkan baseline teks dengan model multimodal yang transparan dan menjaga privasi. Confidence: Medium."
+              citations={[{ index: 1, title: "Prediksi kesehatan mental mahasiswa", doi: "Tidak tersedia" }]}
             />
           </div>
           <div className="h-72 overflow-hidden rounded-lg border border-white/10 bg-white">

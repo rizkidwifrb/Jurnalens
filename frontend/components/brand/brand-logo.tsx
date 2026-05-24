@@ -1,11 +1,11 @@
-import { Search } from "lucide-react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 export function BrandLogo({ compact = false, className }: { compact?: boolean; className?: string }) {
   return (
     <div className={cn("inline-flex min-w-0 items-center gap-3", className)}>
-      <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-white/15 bg-[linear-gradient(135deg,#f8fbff,#aebfcb_52%,#7ddcff)] text-[#071018] shadow-[0_12px_36px_rgba(111,213,255,0.22)]">
-        <Search className="h-5 w-5" strokeWidth={2.7} />
+      <div className="grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-lg border border-white/15 bg-[linear-gradient(135deg,#f8fbff,#aebfcb_52%,#7ddcff)] shadow-[0_12px_36px_rgba(111,213,255,0.22)]">
+        <Image src="/logo.png" alt="Logo Jurnalens" width={34} height={34} className="h-8 w-8 object-contain" priority />
       </div>
       {!compact && (
         <span className="min-w-0 leading-none">

@@ -26,7 +26,7 @@ function SearchContent() {
     try {
       setData(await hybridSearch(query));
     } catch (event) {
-      setError(event instanceof Error ? event.message : "Search failed");
+      setError(event instanceof Error ? event.message : "Pencarian gagal");
     } finally {
       setLoading(false);
     }
@@ -38,7 +38,7 @@ function SearchContent() {
     setError(null);
     hybridSearch(activeQuery)
       .then(setData)
-      .catch((event) => setError(event instanceof Error ? event.message : "Search failed"))
+      .catch((event) => setError(event instanceof Error ? event.message : "Pencarian gagal"))
       .finally(() => setLoading(false));
   }, [activeQuery]);
 
@@ -47,9 +47,9 @@ function SearchContent() {
       <div className="mx-auto max-w-6xl space-y-5">
         <header className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div className="min-w-0">
-            <p className="mb-2 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-xs text-muted"><Sparkles className="h-3.5 w-3.5 text-accent" /> Hybrid academic retrieval</p>
-            <h1 className="text-balance text-3xl font-semibold leading-tight">Search with Jurnalens</h1>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">Cari jurnal, metode, topik, atau pertanyaan riset. Hasil bisa datang dari index lokal dan fallback live academic sources.</p>
+            <p className="mb-2 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-xs text-muted"><Sparkles className="h-3.5 w-3.5 text-accent" /> Retrieval akademik hybrid</p>
+            <h1 className="text-balance text-3xl font-semibold leading-tight">Cari dengan Jurnalens</h1>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">Cari jurnal, metode, topik, atau pertanyaan riset. Hasil bisa datang dari index lokal dan sumber akademik live.</p>
           </div>
         </header>
 
@@ -57,14 +57,14 @@ function SearchContent() {
           <section className="space-y-5">
             <SearchBox onSearch={run} initialQuery={activeQuery} />
             <div className="flex flex-wrap gap-2 text-xs text-muted">
-              {["Year", "Author", "Journal", "Open access", "Topic", "Citation count", "Source"].map((filter) => (
+              {["Tahun", "Penulis", "Jurnal", "Open access", "Topik", "Jumlah sitasi", "Sumber"].map((filter) => (
                 <span key={filter} className="inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/[0.045] px-3 py-2"><Filter className="h-3 w-3" />{filter}</span>
               ))}
             </div>
             {data && !loading && (
               <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
-                <span className="inline-flex items-center gap-1 rounded-md bg-lime/10 px-2.5 py-1.5 text-lime"><SearchCheck className="h-3.5 w-3.5" /> {data.results.length} results</span>
-                <span className="rounded-md bg-white/[0.06] px-2.5 py-1.5">Query: {data.query}</span>
+                <span className="inline-flex items-center gap-1 rounded-md bg-lime/10 px-2.5 py-1.5 text-lime"><SearchCheck className="h-3.5 w-3.5" /> {data.results.length} hasil</span>
+                <span className="rounded-md bg-white/[0.06] px-2.5 py-1.5">Kueri: {data.query}</span>
               </div>
             )}
             {loading && (
@@ -79,18 +79,18 @@ function SearchContent() {
               </div>
             )}
             {error && <Card className="border-rose/40 text-rose">{error}</Card>}
-            {!loading && !data && <Card className="text-muted">Try &quot;komunikasi digital mahasiswa&quot; or &quot;AI untuk deteksi depresi mahasiswa&quot;.</Card>}
-            {!loading && data && data.results.length === 0 && <Card className="text-muted">No papers found yet. Try a broader keyword or run ingestion from the admin endpoint.</Card>}
+            {!loading && !data && <Card className="text-muted">Coba &quot;komunikasi digital mahasiswa&quot; atau &quot;AI untuk deteksi depresi mahasiswa&quot;.</Card>}
+            {!loading && data && data.results.length === 0 && <Card className="text-muted">Belum ada paper ditemukan. Coba kata kunci yang lebih umum atau jalankan ingestion dari admin endpoint.</Card>}
             {!loading && data?.results.map((result) => <PaperCard key={result.paper.id} result={result} />)}
           </section>
           <aside className="space-y-4 lg:sticky lg:top-7 lg:self-start">
             <AnswerPanel answer={data?.answer} citations={data?.citations} />
             <Card>
-              <h3 className="flex items-center gap-2 font-semibold"><Library className="h-4 w-4 text-accent" /> Next Questions</h3>
-              <div className="mt-3 space-y-2 text-sm leading-6 text-muted">{data?.next_questions.map((q) => <p key={q}>{q}</p>) || <p>Search results will generate next research directions.</p>}</div>
+              <h3 className="flex items-center gap-2 font-semibold"><Library className="h-4 w-4 text-accent" /> Pertanyaan Lanjutan</h3>
+              <div className="mt-3 space-y-2 text-sm leading-6 text-muted">{data?.next_questions.map((q) => <p key={q}>{q}</p>) || <p>Hasil pencarian akan menghasilkan arah riset berikutnya.</p>}</div>
             </Card>
             <Card>
-              <h3 className="flex items-center gap-2 font-semibold"><Flame className="h-4 w-4 text-rose" /> Trending</h3>
+              <h3 className="flex items-center gap-2 font-semibold"><Flame className="h-4 w-4 text-rose" /> Tren</h3>
               <div className="mt-3 space-y-2 text-sm text-muted">
                 <p>komunikasi digital mahasiswa</p>
                 <p>AI untuk literatur review</p>

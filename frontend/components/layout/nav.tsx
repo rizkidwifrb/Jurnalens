@@ -8,13 +8,13 @@ import { cn } from "@/lib/utils";
 
 const items = [
   ["/dashboard", "Dashboard", LayoutDashboard],
-  ["/search", "Search", Search],
-  ["/assistant", "Assistant", BookOpen],
+  ["/search", "Cari", Search],
+  ["/assistant", "Asisten", BookOpen],
   ["/pdf", "PDF", FileText],
   ["/bookmarks", "Bookmarks", Star],
   ["/graph", "Graph", Network],
-  ["/topics", "Topics", TrendingUp],
-  ["/settings", "Settings", Settings]
+  ["/topics", "Topik", TrendingUp],
+  ["/settings", "Pengaturan", Settings]
 ] as const;
 
 export function Nav() {
@@ -57,8 +57,8 @@ export function Nav() {
           })}
         </nav>
         <div className="absolute bottom-4 left-4 right-4 rounded-lg border border-white/10 bg-white/[0.055] p-3">
-          <p className="text-xs font-medium text-foreground">Live academic lens</p>
-          <p className="mt-1 text-xs leading-5 text-muted">OpenAlex, CORE, Crossref, Qdrant, and OpenSearch-ready.</p>
+          <p className="text-xs font-medium text-foreground">Lensa akademik live</p>
+          <p className="mt-1 text-xs leading-5 text-muted">OpenAlex, CORE, Crossref, Qdrant, dan OpenSearch-ready.</p>
         </div>
       </aside>
 

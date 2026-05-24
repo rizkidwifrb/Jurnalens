@@ -5,14 +5,14 @@ import "reactflow/dist/style.css";
 
 const nodes = [
   { id: "paper", position: { x: 80, y: 80 }, data: { label: "Paper" }, type: "input" },
-  { id: "author", position: { x: 330, y: 20 }, data: { label: "Author" } },
-  { id: "topic", position: { x: 330, y: 150 }, data: { label: "Topic" } },
-  { id: "journal", position: { x: 590, y: 80 }, data: { label: "Journal" }, type: "output" }
+  { id: "author", position: { x: 330, y: 20 }, data: { label: "Penulis" } },
+  { id: "topic", position: { x: 330, y: 150 }, data: { label: "Topik" } },
+  { id: "journal", position: { x: 590, y: 80 }, data: { label: "Jurnal" }, type: "output" }
 ];
 const edges = [
-  { id: "e1", source: "paper", target: "author", label: "written by" },
-  { id: "e2", source: "paper", target: "topic", label: "related to" },
-  { id: "e3", source: "paper", target: "journal", label: "published in" }
+  { id: "e1", source: "paper", target: "author", label: "ditulis oleh" },
+  { id: "e2", source: "paper", target: "topic", label: "terkait" },
+  { id: "e3", source: "paper", target: "journal", label: "terbit di" }
 ];
 
 export function ResearchGraph() {

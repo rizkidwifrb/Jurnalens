@@ -14,22 +14,22 @@ export function PaperCard({ result }: { result: SearchResult }) {
           <div className="min-w-0 space-y-3">
             <div className="flex flex-wrap gap-2 text-xs text-muted">
               <span className="rounded-md bg-accent/10 px-2 py-1 text-accent">{paper.source || "Indexed"}</span>
-              <span className="rounded-md bg-white/[0.06] px-2 py-1">{paper.year ?? "Year not available"}</span>
-              <span className="inline-flex items-center gap-1 rounded-md bg-white/[0.06] px-2 py-1">{paper.open_access && <Unlock className="h-3 w-3 text-lime" />}{paper.open_access ? "Open access" : "Access unknown"}</span>
+              <span className="rounded-md bg-white/[0.06] px-2 py-1">{paper.year ?? "Tahun tidak tersedia"}</span>
+              <span className="inline-flex items-center gap-1 rounded-md bg-white/[0.06] px-2 py-1">{paper.open_access && <Unlock className="h-3 w-3 text-lime" />}{paper.open_access ? "Open access" : "Akses belum diketahui"}</span>
             </div>
             <Link href={`/papers/${paper.id}`} className="block text-lg font-semibold leading-snug tracking-normal text-foreground transition group-hover:text-accent sm:text-xl">{paper.title}</Link>
           </div>
           <Button title="Bookmark" className="h-10 w-10 shrink-0 px-0 self-start"><Bookmark className="h-4 w-4" /></Button>
         </div>
-        <p className="line-clamp-3 text-sm leading-7 text-[#aebbc9]">{result.ai_summary || paper.abstract || "Abstract not available."}</p>
+        <p className="line-clamp-3 text-sm leading-7 text-[#aebbc9]">{result.ai_summary || paper.abstract || "Abstrak tidak tersedia."}</p>
         <div className="grid gap-2 rounded-lg border border-white/10 bg-black/20 p-3 text-xs text-muted sm:grid-cols-3">
-          <span className="truncate">{paper.journal || "Source not available"}</span>
-          <span><Quote className="mr-1 inline h-3 w-3" />{paper.citation_count ?? "Not available"} citations</span>
-          <span><Sparkles className="mr-1 inline h-3 w-3 text-accent" />Relevance {result.relevance_score.toFixed(2)}</span>
+          <span className="truncate">{paper.journal || "Sumber tidak tersedia"}</span>
+          <span><Quote className="mr-1 inline h-3 w-3" />{paper.citation_count ?? "Tidak tersedia"} sitasi</span>
+          <span><Sparkles className="mr-1 inline h-3 w-3 text-accent" />Relevansi {result.relevance_score.toFixed(2)}</span>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           {paper.doi && <span className="max-w-full rounded-md bg-white/[0.07] px-2 py-1 text-xs text-muted"><span className="text-foreground/80">DOI</span> <span className="break-all">{paper.doi}</span></span>}
-          {paper.url && <Link href={paper.url} className="inline-flex items-center gap-1 rounded-md border border-accent/20 bg-accent/10 px-2 py-1 text-xs text-accent transition hover:bg-accent/15" target="_blank">Source <ExternalLink className="h-3 w-3" /></Link>}
+          {paper.url && <Link href={paper.url} className="inline-flex items-center gap-1 rounded-md border border-accent/20 bg-accent/10 px-2 py-1 text-xs text-accent transition hover:bg-accent/15" target="_blank">Sumber <ExternalLink className="h-3 w-3" /></Link>}
         </div>
       </div>
     </Card>

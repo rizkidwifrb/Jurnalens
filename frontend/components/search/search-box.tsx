@@ -35,18 +35,18 @@ export function SearchBox({
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search papers, methods, topics..."
+            placeholder="Cari paper, metode, topik..."
             className={`w-full rounded-md border border-white/10 bg-black/18 pl-10 pr-3 text-foreground outline-none transition placeholder:text-muted focus:border-accent/45 sm:border-0 sm:bg-transparent sm:pl-2 ${large ? "h-11 text-sm sm:h-12 sm:text-base" : "h-10 text-sm"}`}
           />
         </label>
         <Button type="button" title="Advanced filters" className="hidden h-10 w-10 px-0 sm:inline-flex"><SlidersHorizontal className="h-4 w-4" /></Button>
-        <Button type="submit" className="h-10 w-full bg-white text-black hover:bg-white/90 sm:w-auto"><Sparkles className="h-4 w-4" />Search</Button>
+        <Button type="submit" className="h-10 w-full bg-white text-black hover:bg-white/90 sm:w-auto"><Sparkles className="h-4 w-4" />Cari</Button>
       </div>
       {large && (
         <div className="mt-2 flex flex-wrap items-center gap-2 px-2 pb-1 text-xs text-muted">
-          <span className="inline-flex items-center gap-1 rounded-md bg-white/[0.06] px-2 py-1"><Command className="h-3 w-3" /> natural language</span>
-          <span className="rounded-md bg-white/[0.06] px-2 py-1">hybrid retrieval</span>
-          <span className="rounded-md bg-white/[0.06] px-2 py-1">grounded citations</span>
+          <span className="inline-flex items-center gap-1 rounded-md bg-white/[0.06] px-2 py-1"><Command className="h-3 w-3" /> bahasa natural</span>
+          <span className="rounded-md bg-white/[0.06] px-2 py-1">retrieval hybrid</span>
+          <span className="rounded-md bg-white/[0.06] px-2 py-1">sitasi grounded</span>
         </div>
       )}
     </form>
